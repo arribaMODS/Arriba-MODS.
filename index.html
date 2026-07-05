@@ -30,11 +30,66 @@ color:#334155;
 line-height:1.6;
 }
 
+/* TOP BAR: COPYRIGHT + LANGUAGE SELECTOR */
+
+#top-bar{
+position:fixed;
+top:0;
+width:100%;
+background:#0f172a;
+color:#cbd5e1;
+font-size:12px;
+z-index:1001;
+border-bottom:1px solid #1e3a8a;
+}
+
+.top-bar-inner{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:6px 0;
+gap:10px;
+}
+
+#top-bar-copy{
+opacity:.85;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+}
+
+.lang-switcher{
+display:flex;
+align-items:center;
+gap:6px;
+flex-shrink:0;
+}
+
+.lang-icon{
+font-size:13px;
+opacity:.8;
+}
+
+#lang-select{
+background:#1e293b;
+color:#fff;
+border:1px solid #334155;
+border-radius:8px;
+padding:4px 8px;
+font-size:12px;
+font-weight:600;
+cursor:pointer;
+}
+
+#lang-select:focus{
+outline:2px solid var(--primary);
+}
+
 /* HEADER */
 
 header{
 position:fixed;
-top:0;
+top:32px;
 width:100%;
 background:rgba(255,255,255,.96);
 backdrop-filter:blur(10px);
@@ -88,7 +143,7 @@ color:var(--primary);
 .hero{
 background:linear-gradient(135deg,#0f172a,#1e3a8a);
 color:white;
-padding:180px 20px 120px;
+padding:212px 20px 120px;
 text-align:center;
 }
 
@@ -274,6 +329,16 @@ grid-template-columns:1fr;
 nav{
 display:none;
 }
+
+#top-bar-copy{
+max-width:52vw;
+font-size:10.5px;
+}
+
+#lang-select{
+font-size:11px;
+padding:3px 6px;
+}
 }
 
 /* ===== LOADING SCREEN ===== */
@@ -373,6 +438,21 @@ display:none;
   });
 </script>
 
+<div id="top-bar">
+<div class="container top-bar-inner">
+<span id="top-bar-copy" data-i18n="topbar.copyright">© 2026 Ariba MODS. Todos los derechos reservados.</span>
+<div class="lang-switcher">
+<span class="lang-icon">🌐</span>
+<select id="lang-select" aria-label="Language selector">
+<option value="es">🇪🇸 Español</option>
+<option value="en">🇺🇸 English</option>
+<option value="zh">🇨🇳 中文</option>
+<option value="ja">🇯🇵 日本語</option>
+</select>
+</div>
+</div>
+</div>
+
 <header>
 <div class="container navbar">
 
@@ -382,17 +462,186 @@ display:none;
 </a>
 
 <nav>
-<a href="#inicio">Inicio</a>
-<a href="#servicios">Servicios</a>
-<a href="#empresa">Empresa</a>
-<a href="#proyectos">Proyectos</a>
-<a href="#faq">FAQ</a>
-<a href="#contacto">Contacto</a>
+<a href="#inicio" data-i18n="nav.inicio">Inicio</a>
+<a href="#servicios" data-i18n="nav.servicios">Servicios</a>
+<a href="#empresa" data-i18n="nav.empresa">Empresa</a>
+<a href="#proyectos" data-i18n="nav.proyectos">Proyectos</a>
+<a href="#faq" data-i18n="nav.faq">FAQ</a>
+<a href="#contacto" data-i18n="nav.contacto">Contacto</a>
 <a href="BlueGames_Completa.html" style="background:#1e63ff;color:white;padding:8px 16px;border-radius:8px;margin-left:25px;">🎮 BlueGames</a>
 </nav>
 
 </div>
 </header>
+
+<script>
+(function(){
+  var TRANSLATIONS = {
+    es:{
+      "topbar.copyright":"© 2026 Ariba MODS. Todos los derechos reservados.",
+      "nav.inicio":"Inicio","nav.servicios":"Servicios","nav.empresa":"Empresa",
+      "nav.proyectos":"Proyectos","nav.faq":"FAQ","nav.contacto":"Contacto",
+      "hero.subtitle":"Plataforma digital enfocada en ofrecer herramientas modernas, documentación centralizada y recursos optimizados para la comunidad.",
+      "hero.btn_download":"Descargar APK","hero.btn_wiki":"Ariba Wiki",
+      "servicios.title":"Servicios",
+      "servicios.subtitle":"Diseñados para brindar estabilidad, accesibilidad y una experiencia moderna.",
+      "servicios.card1.title":"Rendimiento","servicios.card1.desc":"Aplicaciones optimizadas para una experiencia fluida.",
+      "servicios.card2.title":"Seguridad","servicios.card2.desc":"Actualizaciones constantes y mejoras continuas.",
+      "servicios.card3.title":"Documentación","servicios.card3.desc":"Centro de información y recursos mediante Ariba Wiki.",
+      "servicios.card4.title":"Soporte","servicios.card4.desc":"Atención a consultas, reportes y sugerencias.",
+      "empresa.title":"Sobre Ariba MODS",
+      "empresa.p1":"Ariba MODS es un proyecto enfocado en el desarrollo y distribución de recursos digitales modernos para la comunidad.",
+      "empresa.p2":"Nuestro objetivo es ofrecer una plataforma estable, documentada y accesible para todos los usuarios.",
+      "proyectos.title":"Nuestros Proyectos",
+      "proyectos.subtitle":"Recursos y plataformas que forman parte del ecosistema Ariba.",
+      "proyectos.card1.desc":"Aplicación principal del proyecto.",
+      "proyectos.card2.desc":"Documentación, guías y recursos oficiales.",
+      "proyectos.card3.title":"Centro de Contacto","proyectos.card3.desc":"Canal oficial para soporte y consultas.",
+      "proyectos.card4.desc":"Portal de juegos y descargas de la comunidad.",
+      "proyectos.card4.btn":"Visitar Portal",
+      "stats.label1":"Disponibilidad","stats.label2":"Compromiso","stats.label3":"Innovación",
+      "faq.title":"Preguntas Frecuentes",
+      "faq.q1":"¿La aplicación es gratuita?","faq.a1":"Sí, la descarga es gratuita.",
+      "faq.q2":"¿Dónde encuentro documentación?","faq.a2":"En Ariba Wiki.",
+      "faq.q3":"¿Cómo puedo contactar con soporte?","faq.a3":"Mediante el Centro de Contacto.",
+      "contact.title":"Contacto",
+      "contact.text":"¿Necesitas ayuda, soporte técnico o reportar algún problema?",
+      "contact.btn":"Centro de Contacto",
+      "footer.copyright":"© 2026 Ariba MODS. Todos los derechos reservados.",
+      "assistant.status":"En línea"
+    },
+    en:{
+      "topbar.copyright":"© 2026 Ariba MODS. All rights reserved.",
+      "nav.inicio":"Home","nav.servicios":"Services","nav.empresa":"Company",
+      "nav.proyectos":"Projects","nav.faq":"FAQ","nav.contacto":"Contact",
+      "hero.subtitle":"A digital platform focused on offering modern tools, centralized documentation and optimized resources for the community.",
+      "hero.btn_download":"Download APK","hero.btn_wiki":"Ariba Wiki",
+      "servicios.title":"Services",
+      "servicios.subtitle":"Designed to provide stability, accessibility and a modern experience.",
+      "servicios.card1.title":"Performance","servicios.card1.desc":"Optimized applications for a smooth experience.",
+      "servicios.card2.title":"Security","servicios.card2.desc":"Constant updates and ongoing improvements.",
+      "servicios.card3.title":"Documentation","servicios.card3.desc":"Information and resource hub via Ariba Wiki.",
+      "servicios.card4.title":"Support","servicios.card4.desc":"Assistance with inquiries, reports and suggestions.",
+      "empresa.title":"About Ariba MODS",
+      "empresa.p1":"Ariba MODS is a project focused on developing and distributing modern digital resources for the community.",
+      "empresa.p2":"Our goal is to offer a stable, well-documented and accessible platform for all users.",
+      "proyectos.title":"Our Projects",
+      "proyectos.subtitle":"Resources and platforms that are part of the Ariba ecosystem.",
+      "proyectos.card1.desc":"The project's main application.",
+      "proyectos.card2.desc":"Official documentation, guides and resources.",
+      "proyectos.card3.title":"Contact Center","proyectos.card3.desc":"Official channel for support and inquiries.",
+      "proyectos.card4.desc":"Community games and downloads portal.",
+      "proyectos.card4.btn":"Visit Portal",
+      "stats.label1":"Availability","stats.label2":"Commitment","stats.label3":"Innovation",
+      "faq.title":"Frequently Asked Questions",
+      "faq.q1":"Is the app free?","faq.a1":"Yes, the download is free.",
+      "faq.q2":"Where can I find documentation?","faq.a2":"On Ariba Wiki.",
+      "faq.q3":"How can I contact support?","faq.a3":"Through the Contact Center.",
+      "contact.title":"Contact",
+      "contact.text":"Need help, technical support, or want to report a problem?",
+      "contact.btn":"Contact Center",
+      "footer.copyright":"© 2026 Ariba MODS. All rights reserved.",
+      "assistant.status":"Online"
+    },
+    zh:{
+      "topbar.copyright":"© 2026 Ariba MODS。保留所有权利。",
+      "nav.inicio":"首页","nav.servicios":"服务","nav.empresa":"公司",
+      "nav.proyectos":"项目","nav.faq":"常见问题","nav.contacto":"联系我们",
+      "hero.subtitle":"专注于为社区提供现代化工具、集中文档和优化资源的数字平台。",
+      "hero.btn_download":"下载 APK","hero.btn_wiki":"Ariba Wiki",
+      "servicios.title":"服务",
+      "servicios.subtitle":"旨在提供稳定性、可访问性和现代化的体验。",
+      "servicios.card1.title":"性能","servicios.card1.desc":"经过优化的应用程序，带来流畅体验。",
+      "servicios.card2.title":"安全","servicios.card2.desc":"持续更新与不断改进。",
+      "servicios.card3.title":"文档","servicios.card3.desc":"通过 Ariba Wiki 提供的信息与资源中心。",
+      "servicios.card4.title":"支持","servicios.card4.desc":"处理咨询、报告与建议。",
+      "empresa.title":"关于 Ariba MODS",
+      "empresa.p1":"Ariba MODS 是一个致力于为社区开发和分发现代数字资源的项目。",
+      "empresa.p2":"我们的目标是为所有用户提供一个稳定、有完善文档且易于访问的平台。",
+      "proyectos.title":"我们的项目",
+      "proyectos.subtitle":"作为 Ariba 生态系统一部分的资源与平台。",
+      "proyectos.card1.desc":"该项目的主要应用程序。",
+      "proyectos.card2.desc":"官方文档、指南与资源。",
+      "proyectos.card3.title":"联系中心","proyectos.card3.desc":"用于支持与咨询的官方渠道。",
+      "proyectos.card4.desc":"社区游戏与下载门户。",
+      "proyectos.card4.btn":"访问门户",
+      "stats.label1":"可用性","stats.label2":"承诺","stats.label3":"创新",
+      "faq.title":"常见问题",
+      "faq.q1":"该应用免费吗？","faq.a1":"是的，下载是免费的。",
+      "faq.q2":"在哪里可以找到文档？","faq.a2":"在 Ariba Wiki 中。",
+      "faq.q3":"如何联系支持？","faq.a3":"通过联系中心。",
+      "contact.title":"联系我们",
+      "contact.text":"需要帮助、技术支持，或想报告问题吗？",
+      "contact.btn":"联系中心",
+      "footer.copyright":"© 2026 Ariba MODS。保留所有权利。",
+      "assistant.status":"在线"
+    },
+    ja:{
+      "topbar.copyright":"© 2026 Ariba MODS. 無断複製・転載を禁じます。",
+      "nav.inicio":"ホーム","nav.servicios":"サービス","nav.empresa":"会社概要",
+      "nav.proyectos":"プロジェクト","nav.faq":"よくある質問","nav.contacto":"お問い合わせ",
+      "hero.subtitle":"コミュニティのために、最新のツール、一元化されたドキュメント、最適化されたリソースを提供するデジタルプラットフォームです。",
+      "hero.btn_download":"APKをダウンロード","hero.btn_wiki":"Ariba Wiki",
+      "servicios.title":"サービス",
+      "servicios.subtitle":"安定性、アクセシビリティ、そしてモダンな体験を提供するために設計されています。",
+      "servicios.card1.title":"パフォーマンス","servicios.card1.desc":"快適な体験のために最適化されたアプリケーション。",
+      "servicios.card2.title":"セキュリティ","servicios.card2.desc":"継続的なアップデートと改善。",
+      "servicios.card3.title":"ドキュメント","servicios.card3.desc":"Ariba Wikiによる情報・リソースセンター。",
+      "servicios.card4.title":"サポート","servicios.card4.desc":"お問い合わせ、報告、ご提案への対応。",
+      "empresa.title":"Ariba MODSについて",
+      "empresa.p1":"Ariba MODSは、コミュニティ向けの最新デジタルリソースの開発と配布に注力するプロジェクトです。",
+      "empresa.p2":"私たちの目標は、すべてのユーザーにとって安定した、文書化された、アクセスしやすいプラットフォームを提供することです。",
+      "proyectos.title":"私たちのプロジェクト",
+      "proyectos.subtitle":"Aribaエコシステムの一部であるリソースとプラットフォーム。",
+      "proyectos.card1.desc":"プロジェクトのメインアプリケーション。",
+      "proyectos.card2.desc":"公式ドキュメント、ガイド、リソース。",
+      "proyectos.card3.title":"お問い合わせセンター","proyectos.card3.desc":"サポートとお問い合わせのための公式チャンネル。",
+      "proyectos.card4.desc":"コミュニティのゲームとダウンロードのポータル。",
+      "proyectos.card4.btn":"ポータルを見る",
+      "stats.label1":"稼働率","stats.label2":"コミットメント","stats.label3":"イノベーション",
+      "faq.title":"よくある質問",
+      "faq.q1":"アプリは無料ですか？","faq.a1":"はい、ダウンロードは無料です。",
+      "faq.q2":"ドキュメントはどこにありますか？","faq.a2":"Ariba Wikiにあります。",
+      "faq.q3":"サポートへの連絡方法は？","faq.a3":"お問い合わせセンターからご連絡ください。",
+      "contact.title":"お問い合わせ",
+      "contact.text":"ヘルプ、技術サポート、または問題の報告が必要ですか？",
+      "contact.btn":"お問い合わせセンター",
+      "footer.copyright":"© 2026 Ariba MODS. 無断複製・転載を禁じます。",
+      "assistant.status":"オンライン"
+    }
+  };
+
+  var LANG_HTML_MAP = { es:"es", en:"en", zh:"zh-CN", ja:"ja" };
+
+  function applyLanguage(lang){
+    if(!TRANSLATIONS[lang]) lang = "es";
+    var dict = TRANSLATIONS[lang];
+    document.documentElement.lang = LANG_HTML_MAP[lang] || lang;
+    document.querySelectorAll("[data-i18n]").forEach(function(el){
+      var key = el.getAttribute("data-i18n");
+      if(dict[key] !== undefined){
+        el.textContent = dict[key];
+      }
+    });
+    var select = document.getElementById("lang-select");
+    if(select) select.value = lang;
+    if(window.asstSetLanguage) window.asstSetLanguage(lang);
+    window.ARIBA_CURRENT_LANG = lang;
+  }
+
+  window.applyLanguage = applyLanguage;
+
+  document.addEventListener("DOMContentLoaded", function(){
+    var select = document.getElementById("lang-select");
+    if(select){
+      select.addEventListener("change", function(){
+        applyLanguage(this.value);
+      });
+    }
+    applyLanguage("es");
+  });
+})();
+</script>
 
 <section class="hero" id="inicio">
 
@@ -400,7 +649,7 @@ display:none;
 
 <h1>Ariba MODS</h1>
 
-<p>
+<p data-i18n="hero.subtitle">
 Plataforma digital enfocada en ofrecer herramientas modernas,
 documentación centralizada y recursos optimizados para la comunidad.
 </p>
@@ -408,13 +657,13 @@ documentación centralizada y recursos optimizados para la comunidad.
 <a href="https://www.mediafire.com/file/udm8asraz2n6one/com.MODS.STUDIO_signed.apk/file"
 target="_blank"
 class="btn btn-primary">
-⬇ Descargar APK
+⬇ <span data-i18n="hero.btn_download">Descargar APK</span>
 </a>
 
 <a href="https://zonaapx1.github.io/Wikipedia.com/"
 target="_blank"
 class="btn btn-secondary">
-? Ariba Wiki
+📘 <span data-i18n="hero.btn_wiki">Ariba Wiki</span>
 </a>
 
 </div>
@@ -425,32 +674,32 @@ class="btn btn-secondary">
 
 <div class="container">
 
-<h2 class="section-title">Servicios</h2>
+<h2 class="section-title" data-i18n="servicios.title">Servicios</h2>
 
-<p class="section-subtitle">
+<p class="section-subtitle" data-i18n="servicios.subtitle">
 Diseñados para brindar estabilidad, accesibilidad y una experiencia moderna.
 </p>
 
 <div class="grid">
 
 <div class="card">
-<h3>⚡ Rendimiento</h3>
-<p>Aplicaciones optimizadas para una experiencia fluida.</p>
+<h3>⚡ <span data-i18n="servicios.card1.title">Rendimiento</span></h3>
+<p data-i18n="servicios.card1.desc">Aplicaciones optimizadas para una experiencia fluida.</p>
 </div>
 
 <div class="card">
-<h3>? Seguridad</h3>
-<p>Actualizaciones constantes y mejoras continuas.</p>
+<h3>🔐 <span data-i18n="servicios.card2.title">Seguridad</span></h3>
+<p data-i18n="servicios.card2.desc">Actualizaciones constantes y mejoras continuas.</p>
 </div>
 
 <div class="card">
-<h3>? Documentación</h3>
-<p>Centro de información y recursos mediante Ariba Wiki.</p>
+<h3>📚 <span data-i18n="servicios.card3.title">Documentación</span></h3>
+<p data-i18n="servicios.card3.desc">Centro de información y recursos mediante Ariba Wiki.</p>
 </div>
 
 <div class="card">
-<h3>? Soporte</h3>
-<p>Atención a consultas, reportes y sugerencias.</p>
+<h3>🛠️ <span data-i18n="servicios.card4.title">Soporte</span></h3>
+<p data-i18n="servicios.card4.desc">Atención a consultas, reportes y sugerencias.</p>
 </div>
 
 </div>
@@ -467,16 +716,16 @@ Diseñados para brindar estabilidad, accesibilidad y una experiencia moderna.
 
 <div>
 
-<h2>Sobre Ariba MODS</h2>
+<h2 data-i18n="empresa.title">Sobre Ariba MODS</h2>
 
-<p>
+<p data-i18n="empresa.p1">
 Ariba MODS es un proyecto enfocado en el desarrollo y distribución
 de recursos digitales modernos para la comunidad.
 </p>
 
 <br>
 
-<p>
+<p data-i18n="empresa.p2">
 Nuestro objetivo es ofrecer una plataforma estable,
 documentada y accesible para todos los usuarios.
 </p>
@@ -497,9 +746,9 @@ documentada y accesible para todos los usuarios.
 
 <div class="container">
 
-<h2 class="section-title">Nuestros Proyectos</h2>
+<h2 class="section-title" data-i18n="proyectos.title">Nuestros Proyectos</h2>
 
-<p class="section-subtitle">
+<p class="section-subtitle" data-i18n="proyectos.subtitle">
 Recursos y plataformas que forman parte del ecosistema Ariba.
 </p>
 
@@ -507,23 +756,23 @@ Recursos y plataformas que forman parte del ecosistema Ariba.
 
 <div class="card">
 <h3>Ariba MODS</h3>
-<p>Aplicación principal del proyecto.</p>
+<p data-i18n="proyectos.card1.desc">Aplicación principal del proyecto.</p>
 </div>
 
 <div class="card">
 <h3>Ariba Wiki</h3>
-<p>Documentación, guías y recursos oficiales.</p>
+<p data-i18n="proyectos.card2.desc">Documentación, guías y recursos oficiales.</p>
 </div>
 
 <div class="card">
-<h3>Centro de Contacto</h3>
-<p>Canal oficial para soporte y consultas.</p>
+<h3 data-i18n="proyectos.card3.title">Centro de Contacto</h3>
+<p data-i18n="proyectos.card3.desc">Canal oficial para soporte y consultas.</p>
 </div>
 
 <div class="card" style="border-left:4px solid #1e63ff">
 <h3>🎮 BlueGames</h3>
-<p>Portal de juegos y descargas de la comunidad.</p>
-<a href="BlueGames_Completa.html" style="display:inline-block;margin-top:12px;background:#1e63ff;color:white;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600;">Visitar Portal</a>
+<p data-i18n="proyectos.card4.desc">Portal de juegos y descargas de la comunidad.</p>
+<a href="BlueGames_Completa.html" style="display:inline-block;margin-top:12px;background:#1e63ff;color:white;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600;" data-i18n="proyectos.card4.btn">Visitar Portal</a>
 </div>
 
 </div>
@@ -540,17 +789,17 @@ Recursos y plataformas que forman parte del ecosistema Ariba.
 
 <div class="stat">
 <h3>24/7</h3>
-<p>Disponibilidad</p>
+<p data-i18n="stats.label1">Disponibilidad</p>
 </div>
 
 <div class="stat">
 <h3>100%</h3>
-<p>Compromiso</p>
+<p data-i18n="stats.label2">Compromiso</p>
 </div>
 
 <div class="stat">
 <h3>∞</h3>
-<p>Innovación</p>
+<p data-i18n="stats.label3">Innovación</p>
 </div>
 
 </div>
@@ -563,23 +812,23 @@ Recursos y plataformas que forman parte del ecosistema Ariba.
 
 <div class="container">
 
-<h2 class="section-title">Preguntas Frecuentes</h2>
+<h2 class="section-title" data-i18n="faq.title">Preguntas Frecuentes</h2>
 
 <div class="faq">
 
 <details>
-<summary>¿La aplicación es gratuita?</summary>
-<p>Sí, la descarga es gratuita.</p>
+<summary data-i18n="faq.q1">¿La aplicación es gratuita?</summary>
+<p data-i18n="faq.a1">Sí, la descarga es gratuita.</p>
 </details>
 
 <details>
-<summary>¿Dónde encuentro documentación?</summary>
-<p>En Ariba Wiki.</p>
+<summary data-i18n="faq.q2">¿Dónde encuentro documentación?</summary>
+<p data-i18n="faq.a2">En Ariba Wiki.</p>
 </details>
 
 <details>
-<summary>¿Cómo puedo contactar con soporte?</summary>
-<p>Mediante el Centro de Contacto.</p>
+<summary data-i18n="faq.q3">¿Cómo puedo contactar con soporte?</summary>
+<p data-i18n="faq.a3">Mediante el Centro de Contacto.</p>
 </details>
 
 </div>
@@ -592,11 +841,11 @@ Recursos y plataformas que forman parte del ecosistema Ariba.
 
 <div class="container">
 
-<h2 class="section-title">Contacto</h2>
+<h2 class="section-title" data-i18n="contact.title">Contacto</h2>
 
 <div class="contact-box">
 
-<p>
+<p data-i18n="contact.text">
 ¿Necesitas ayuda, soporte técnico o reportar algún problema?
 </p>
 
@@ -605,7 +854,7 @@ Recursos y plataformas que forman parte del ecosistema Ariba.
 <a href="https://zonaapx1.github.io/Contacto/"
 target="_blank"
 class="btn btn-primary">
-📩 Centro de Contacto
+📩 <span data-i18n="contact.btn">Centro de Contacto</span>
 </a>
 
 </div>
@@ -622,7 +871,7 @@ class="btn btn-primary">
 
 <br>
 
-<p>
+<p data-i18n="footer.copyright">
 © 2026 Ariba MODS. Todos los derechos reservados.
 </p>
 
@@ -830,13 +1079,13 @@ body { padding-bottom: 55px; }
   width:60px;
   height:60px;
   border-radius:50%;
-  background:linear-gradient(135deg,#1e63ff,#0f172a);
+  background:linear-gradient(135deg,#da7756,#1e3a8a);
   display:flex;
   align-items:center;
   justify-content:center;
   font-size:26px;
   cursor:pointer;
-  box-shadow:0 8px 24px rgba(30,99,255,.45);
+  box-shadow:0 8px 24px rgba(218,119,86,.45);
   z-index:9998;
   transition:transform .25s ease;
   color:#fff;
@@ -988,14 +1237,14 @@ body { padding-bottom: 55px; }
 }
 </style>
 
-<div id="asst-bubble" onclick="asstToggle()">💬</div>
+<div id="asst-bubble" onclick="asstToggle()">✦</div>
 
 <div id="asst-panel">
   <div class="asst-header">
-    <div class="asst-avatar">🛡️</div>
+    <div class="asst-avatar">✦</div>
     <div class="asst-header-text">
-      <strong>Asistente Ariba MODS</strong>
-      <div class="asst-status">En línea</div>
+      <strong id="asst-title">Claude · Asistente Ariba MODS</strong>
+      <div class="asst-status" id="asst-status" data-i18n="assistant.status">En línea</div>
     </div>
     <button class="asst-close" onclick="asstToggle()">✕</button>
   </div>
@@ -1009,46 +1258,206 @@ body { padding-bottom: 55px; }
 
 <script>
 (function(){
-  var KNOWLEDGE = [
-    { kw:["descargar","download","instalar","apk","app","como bajo","como descargo"],
-      a:"Puedes descargar la aplicación Ariba MODS directamente desde el botón principal de la página de inicio.",
-      link:{href:"https://www.mediafire.com/file/udm8asraz2n6one/com.MODS.STUDIO_signed.apk/file", label:"Descargar APK"} },
-    { kw:["wiki","documentacion","documentación","guia","guía","manual"],
-      a:"Toda la documentación, guías y recursos oficiales están disponibles en Ariba Wiki.",
-      link:{href:"https://zonaapx1.github.io/Wikipedia.com/", label:"Ir a Ariba Wiki"} },
-    { kw:["juego","juegos","bluegames","jugar"],
-      a:"Los juegos y descargas de la comunidad están en nuestro portal BlueGames.",
-      link:{href:"BlueGames_Completa.html", label:"Ir a BlueGames"} },
-    { kw:["gratis","precio","costo","pago"],
-      a:"Sí, Ariba MODS y todo su ecosistema (incluyendo BlueGames) es completamente gratuito." },
-    { kw:["seguro","virus","confiable","malware","peligroso"],
-      a:"Nuestra app recibe actualizaciones constantes y mejoras de seguridad continuas. Aun así, te recomendamos tener Play Protect o un antivirus activo." },
-    { kw:["proyecto","proyectos","ecosistema"],
-      a:"Nuestros proyectos incluyen Ariba MODS (app principal), Ariba Wiki (documentación), el Centro de Contacto y BlueGames (portal de juegos).",
-      link:{href:"#proyectos", label:"Ver proyectos"} },
-    { kw:["servicio","servicios","rendimiento","soporte tecnico"],
-      a:"Ofrecemos rendimiento optimizado, seguridad con actualizaciones constantes, documentación centralizada y soporte a consultas." },
-    { kw:["contacto","soporte","ayuda","problema","error","reportar"],
-      a:"Puedes escribirnos desde el Centro de Contacto y con gusto te ayudamos.",
-      link:{href:"#contacto", label:"Ir a Contacto"} },
-    { kw:["faq","pregunta frecuente","dudas"],
-      a:"Tenemos una sección de Preguntas Frecuentes con las dudas más comunes.",
-      link:{href:"#faq", label:"Ver FAQ"} },
-    { kw:["hola","buenas","hey","hi"],
-      a:"¡Hola! 👋 Soy el asistente de Ariba MODS. ¿En qué puedo ayudarte?" }
-  ];
+  // ============================================================
+  // OPCIONAL: integración con la API real de Claude.
+  // Por seguridad, la clave de API NUNCA debe ir en este archivo
+  // (cualquiera que vea el código fuente podría robarla). Si
+  // quieres respuestas generadas por el modelo Claude de verdad,
+  // crea un pequeño backend/proxy propio que reciba el mensaje,
+  // llame a la API de Anthropic con tu clave (guardada en el
+  // servidor) y devuelva un JSON { "reply": "..." }. Luego pon
+  // esa URL aquí:
+  var CLAUDE_API_ENDPOINT = null; // ej: "https://tu-backend.com/api/claude"
+  // Mientras CLAUDE_API_ENDPOINT sea null, el asistente usará la
+  // base de conocimiento local (rápida, sin costo y funciona
+  // 100% offline dentro de la página).
+  // ============================================================
 
-  var QUICK_REPLIES = [
-    { label:"⬇️ Descargar APK", q:"descargar apk" },
-    { label:"📖 Ariba Wiki", q:"wiki" },
-    { label:"🎮 Ir a BlueGames", q:"bluegames" },
-    { label:"❓ FAQ", q:"faq" },
-    { label:"📩 Contacto", q:"contacto" }
-  ];
-
-  var FALLBACK = "No tengo una respuesta exacta para eso todavía, pero puedes revisar la sección de Contacto para más ayuda, o prueba con una de las opciones rápidas.";
+  var KB = {
+    es:{
+      title:"Claude · Asistente Ariba MODS",
+      status:"En línea",
+      placeholder:"Escribe tu pregunta...",
+      greeting:"¡Hola! 👋 Soy Claude, tu asistente en Ariba MODS. Puedo ayudarte con la app, la documentación, BlueGames o soporte. ¿Qué necesitas?",
+      fallback:"No tengo una respuesta exacta para eso todavía, pero puedes revisar la sección de Contacto para más ayuda, o prueba con una de las opciones rápidas.",
+      contactLabel:"Ir a Contacto",
+      quick:[
+        { label:"⬇️ Descargar APK", q:"descargar apk" },
+        { label:"📖 Ariba Wiki", q:"wiki" },
+        { label:"🎮 Ir a BlueGames", q:"bluegames" },
+        { label:"❓ FAQ", q:"faq" },
+        { label:"📩 Contacto", q:"contacto" }
+      ],
+      entries:[
+        { kw:["descargar","download","instalar","apk","app","como bajo","como descargo"],
+          a:"Puedes descargar la aplicación Ariba MODS directamente desde el botón principal de la página de inicio.",
+          link:{href:"https://www.mediafire.com/file/udm8asraz2n6one/com.MODS.STUDIO_signed.apk/file", label:"Descargar APK"} },
+        { kw:["wiki","documentacion","documentación","guia","guía","manual"],
+          a:"Toda la documentación, guías y recursos oficiales están disponibles en Ariba Wiki.",
+          link:{href:"https://zonaapx1.github.io/Wikipedia.com/", label:"Ir a Ariba Wiki"} },
+        { kw:["juego","juegos","bluegames","jugar"],
+          a:"Los juegos y descargas de la comunidad están en nuestro portal BlueGames.",
+          link:{href:"BlueGames_Completa.html", label:"Ir a BlueGames"} },
+        { kw:["gratis","precio","costo","pago"],
+          a:"Sí, Ariba MODS y todo su ecosistema (incluyendo BlueGames) es completamente gratuito." },
+        { kw:["seguro","virus","confiable","malware","peligroso"],
+          a:"Nuestra app recibe actualizaciones constantes y mejoras de seguridad continuas. Aun así, te recomendamos tener Play Protect o un antivirus activo." },
+        { kw:["proyecto","proyectos","ecosistema"],
+          a:"Nuestros proyectos incluyen Ariba MODS (app principal), Ariba Wiki (documentación), el Centro de Contacto y BlueGames (portal de juegos).",
+          link:{href:"#proyectos", label:"Ver proyectos"} },
+        { kw:["servicio","servicios","rendimiento","soporte tecnico"],
+          a:"Ofrecemos rendimiento optimizado, seguridad con actualizaciones constantes, documentación centralizada y soporte a consultas." },
+        { kw:["contacto","soporte","ayuda","problema","error","reportar"],
+          a:"Puedes escribirnos desde el Centro de Contacto y con gusto te ayudamos.",
+          link:{href:"#contacto", label:"Ir a Contacto"} },
+        { kw:["faq","pregunta frecuente","dudas"],
+          a:"Tenemos una sección de Preguntas Frecuentes con las dudas más comunes.",
+          link:{href:"#faq", label:"Ver FAQ"} },
+        { kw:["hola","buenas","hey","hi"],
+          a:"¡Hola! 👋 Soy Claude, el asistente de Ariba MODS. ¿En qué puedo ayudarte?" },
+        { kw:["quien eres","qué eres","eres claude"],
+          a:"Soy Claude, un asistente de IA que ayuda a resolver dudas sobre Ariba MODS, su documentación y BlueGames." }
+      ]
+    },
+    en:{
+      title:"Claude · Ariba MODS Assistant",
+      status:"Online",
+      placeholder:"Type your question...",
+      greeting:"Hi! 👋 I'm Claude, your Ariba MODS assistant. I can help with the app, documentation, BlueGames or support. What do you need?",
+      fallback:"I don't have an exact answer for that yet, but you can check the Contact section for more help, or try one of the quick options.",
+      contactLabel:"Go to Contact",
+      quick:[
+        { label:"⬇️ Download APK", q:"download apk" },
+        { label:"📖 Ariba Wiki", q:"wiki" },
+        { label:"🎮 Go to BlueGames", q:"bluegames" },
+        { label:"❓ FAQ", q:"faq" },
+        { label:"📩 Contact", q:"contact" }
+      ],
+      entries:[
+        { kw:["download","install","apk","app","how do i get"],
+          a:"You can download the Ariba MODS app directly from the main button on the homepage.",
+          link:{href:"https://www.mediafire.com/file/udm8asraz2n6one/com.MODS.STUDIO_signed.apk/file", label:"Download APK"} },
+        { kw:["wiki","documentation","guide","manual"],
+          a:"All documentation, guides and official resources are available on Ariba Wiki.",
+          link:{href:"https://zonaapx1.github.io/Wikipedia.com/", label:"Go to Ariba Wiki"} },
+        { kw:["game","games","bluegames","play"],
+          a:"Community games and downloads are on our BlueGames portal.",
+          link:{href:"BlueGames_Completa.html", label:"Go to BlueGames"} },
+        { kw:["free","price","cost","payment"],
+          a:"Yes, Ariba MODS and its whole ecosystem (including BlueGames) is completely free." },
+        { kw:["safe","virus","trustworthy","malware","dangerous"],
+          a:"Our app receives constant updates and ongoing security improvements. Even so, we recommend keeping Play Protect or an antivirus active." },
+        { kw:["project","projects","ecosystem"],
+          a:"Our projects include Ariba MODS (main app), Ariba Wiki (documentation), the Contact Center and BlueGames (games portal).",
+          link:{href:"#proyectos", label:"View projects"} },
+        { kw:["service","services","performance","tech support"],
+          a:"We offer optimized performance, security with constant updates, centralized documentation and support for inquiries." },
+        { kw:["contact","support","help","problem","error","report"],
+          a:"You can write to us through the Contact Center and we'll gladly help.",
+          link:{href:"#contacto", label:"Go to Contact"} },
+        { kw:["faq","frequently asked","questions"],
+          a:"We have a Frequently Asked Questions section with the most common doubts.",
+          link:{href:"#faq", label:"View FAQ"} },
+        { kw:["hi","hello","hey"],
+          a:"Hi! 👋 I'm Claude, the Ariba MODS assistant. How can I help you?" },
+        { kw:["who are you","are you claude"],
+          a:"I'm Claude, an AI assistant here to help with questions about Ariba MODS, its documentation and BlueGames." }
+      ]
+    },
+    zh:{
+      title:"Claude · Ariba MODS 助手",
+      status:"在线",
+      placeholder:"请输入您的问题...",
+      greeting:"你好！👋 我是 Claude，Ariba MODS 的助手。我可以帮助你了解应用、文档、BlueGames 或支持。你需要什么？",
+      fallback:"目前我还没有确切的答案，你可以查看“联系我们”部分获取更多帮助，或试试下面的快捷选项。",
+      contactLabel:"前往联系我们",
+      quick:[
+        { label:"⬇️ 下载 APK", q:"下载 apk" },
+        { label:"📖 Ariba Wiki", q:"wiki" },
+        { label:"🎮 前往 BlueGames", q:"bluegames" },
+        { label:"❓ 常见问题", q:"faq" },
+        { label:"📩 联系我们", q:"联系" }
+      ],
+      entries:[
+        { kw:["下载","安装","apk","应用"],
+          a:"你可以直接从首页的主按钮下载 Ariba MODS 应用。",
+          link:{href:"https://www.mediafire.com/file/udm8asraz2n6one/com.MODS.STUDIO_signed.apk/file", label:"下载 APK"} },
+        { kw:["wiki","文档","指南","教程"],
+          a:"所有文档、指南和官方资源都可以在 Ariba Wiki 中找到。",
+          link:{href:"https://zonaapx1.github.io/Wikipedia.com/", label:"前往 Ariba Wiki"} },
+        { kw:["游戏","bluegames","玩"],
+          a:"社区游戏和下载都在我们的 BlueGames 门户中。",
+          link:{href:"BlueGames_Completa.html", label:"前往 BlueGames"} },
+        { kw:["免费","价格","费用","付款"],
+          a:"是的，Ariba MODS 及其整个生态系统（包括 BlueGames）完全免费。" },
+        { kw:["安全","病毒","可靠","恶意软件","危险"],
+          a:"我们的应用会持续更新并不断改进安全性。不过我们仍建议开启 Play Protect 或使用杀毒软件。" },
+        { kw:["项目","生态系统"],
+          a:"我们的项目包括 Ariba MODS（主应用）、Ariba Wiki（文档）、联系中心和 BlueGames（游戏门户）。",
+          link:{href:"#proyectos", label:"查看项目"} },
+        { kw:["服务","性能","技术支持"],
+          a:"我们提供优化的性能、持续更新的安全保障、集中的文档以及咨询支持。" },
+        { kw:["联系","支持","帮助","问题","错误","反馈"],
+          a:"你可以通过联系中心与我们联系，我们很乐意为你提供帮助。",
+          link:{href:"#contacto", label:"前往联系我们"} },
+        { kw:["faq","常见问题","疑问"],
+          a:"我们设有常见问题解答部分，收录了最常见的疑问。",
+          link:{href:"#faq", label:"查看常见问题"} },
+        { kw:["你好","嗨"],
+          a:"你好！👋 我是 Claude，Ariba MODS 的助手。有什么可以帮你的吗？" },
+        { kw:["你是谁","你是claude吗"],
+          a:"我是 Claude，一个 AI 助手，帮助解答关于 Ariba MODS、其文档以及 BlueGames 的问题。" }
+      ]
+    },
+    ja:{
+      title:"Claude · Ariba MODS アシスタント",
+      status:"オンライン",
+      placeholder:"質問を入力してください...",
+      greeting:"こんにちは！👋 私はClaude、Ariba MODSのアシスタントです。アプリ、ドキュメント、BlueGames、サポートについてお手伝いできます。何が必要ですか？",
+      fallback:"その質問への正確な回答はまだありませんが、「お問い合わせ」セクションをご確認いただくか、下のクイック返信をお試しください。",
+      contactLabel:"お問い合わせへ",
+      quick:[
+        { label:"⬇️ APKをダウンロード", q:"apk ダウンロード" },
+        { label:"📖 Ariba Wiki", q:"wiki" },
+        { label:"🎮 BlueGamesへ", q:"bluegames" },
+        { label:"❓ よくある質問", q:"faq" },
+        { label:"📩 お問い合わせ", q:"お問い合わせ" }
+      ],
+      entries:[
+        { kw:["ダウンロード","インストール","apk","アプリ"],
+          a:"Ariba MODSアプリはホームページのメインボタンから直接ダウンロードできます。",
+          link:{href:"https://www.mediafire.com/file/udm8asraz2n6one/com.MODS.STUDIO_signed.apk/file", label:"APKをダウンロード"} },
+        { kw:["wiki","ドキュメント","ガイド","マニュアル"],
+          a:"すべてのドキュメント、ガイド、公式リソースはAriba Wikiでご覧いただけます。",
+          link:{href:"https://zonaapx1.github.io/Wikipedia.com/", label:"Ariba Wikiへ"} },
+        { kw:["ゲーム","bluegames","プレイ"],
+          a:"コミュニティのゲームとダウンロードはBlueGamesポータルにあります。",
+          link:{href:"BlueGames_Completa.html", label:"BlueGamesへ"} },
+        { kw:["無料","価格","料金","支払い"],
+          a:"はい、Ariba MODSとそのエコシステム全体（BlueGamesを含む）は完全に無料です。" },
+        { kw:["安全","ウイルス","信頼","マルウェア","危険"],
+          a:"当アプリは継続的な更新とセキュリティ改善を行っています。それでもPlay Protectやウイルス対策ソフトの有効化をおすすめします。" },
+        { kw:["プロジェクト","エコシステム"],
+          a:"私たちのプロジェクトにはAriba MODS（メインアプリ）、Ariba Wiki（ドキュメント）、お問い合わせセンター、BlueGames（ゲームポータル）が含まれます。",
+          link:{href:"#proyectos", label:"プロジェクトを見る"} },
+        { kw:["サービス","パフォーマンス","技術サポート"],
+          a:"最適化されたパフォーマンス、継続的な更新によるセキュリティ、一元化されたドキュメント、お問い合わせサポートを提供しています。" },
+        { kw:["お問い合わせ","サポート","ヘルプ","問題","エラー","報告"],
+          a:"お問い合わせセンターからご連絡いただければ、喜んでサポートいたします。",
+          link:{href:"#contacto", label:"お問い合わせへ"} },
+        { kw:["faq","よくある質問","疑問"],
+          a:"よくある質問セクションに、最も一般的な疑問をまとめています。",
+          link:{href:"#faq", label:"FAQを見る"} },
+        { kw:["こんにちは","やあ"],
+          a:"こんにちは！👋 私はClaude、Ariba MODSのアシスタントです。何かお手伝いできますか？" },
+        { kw:["あなたは誰","claudeですか"],
+          a:"私はClaudeです。Ariba MODS、そのドキュメント、BlueGamesについての質問にお答えするAIアシスタントです。" }
+      ]
+    }
+  };
 
   var messagesEl, quickEl, inputEl, panelEl, bubbleEl, opened=false, greeted=false;
+  var currentAsstLang = "es";
 
   function normalize(s){
     return s.toLowerCase()
@@ -1057,9 +1466,10 @@ body { padding-bottom: 55px; }
   }
 
   function findAnswer(text){
+    var lang = KB[currentAsstLang] || KB.es;
     var norm = normalize(text);
-    for(var i=0;i<KNOWLEDGE.length;i++){
-      var entry = KNOWLEDGE[i];
+    for(var i=0;i<lang.entries.length;i++){
+      var entry = lang.entries[i];
       for(var j=0;j<entry.kw.length;j++){
         if(norm.indexOf(normalize(entry.kw[j])) !== -1){
           return entry;
@@ -1090,8 +1500,9 @@ body { padding-bottom: 55px; }
   }
 
   function renderQuickReplies(){
+    var lang = KB[currentAsstLang] || KB.es;
     quickEl.innerHTML = "";
-    QUICK_REPLIES.forEach(function(qr){
+    lang.quick.forEach(function(qr){
       var btn = document.createElement("button");
       btn.textContent = qr.label;
       btn.addEventListener("click", function(){ handleUserText(qr.q); });
@@ -1099,15 +1510,34 @@ body { padding-bottom: 55px; }
     });
   }
 
+  function askClaudeBackend(text, onDone){
+    fetch(CLAUDE_API_ENDPOINT, {
+      method:"POST",
+      headers:{ "Content-Type":"application/json" },
+      body:JSON.stringify({ message:text, lang:currentAsstLang })
+    }).then(function(r){ return r.json(); })
+      .then(function(data){ onDone(data && data.reply ? data.reply : null); })
+      .catch(function(){ onDone(null); });
+  }
+
   function handleUserText(text){
     if(!text || !text.trim()) return;
+    var lang = KB[currentAsstLang] || KB.es;
     appendMessage(text, "user");
+
+    if(CLAUDE_API_ENDPOINT){
+      askClaudeBackend(text, function(reply){
+        appendMessage(reply || lang.fallback, "bot", reply ? null : {href:"#contacto", label:lang.contactLabel});
+      });
+      return;
+    }
+
     var match = findAnswer(text);
     setTimeout(function(){
       if(match){
         appendMessage(match.a, "bot", match.link);
       }else{
-        appendMessage(FALLBACK, "bot", {href:"#contacto", label:"Ir a Contacto"});
+        appendMessage(lang.fallback, "bot", {href:"#contacto", label:lang.contactLabel});
       }
     }, 350);
   }
@@ -1123,9 +1553,28 @@ body { padding-bottom: 55px; }
     panelEl.classList.toggle("open", opened);
     if(opened && !greeted){
       greeted = true;
-      appendMessage("¡Hola! 👋 Soy el asistente de Ariba MODS. Puedo ayudarte con la app, la documentación, BlueGames o soporte. ¿Qué necesitas?", "bot");
+      var lang = KB[currentAsstLang] || KB.es;
+      appendMessage(lang.greeting, "bot");
     }
     if(opened) inputEl.focus();
+  };
+
+  // Llamado por el selector de idioma general de la página
+  window.asstSetLanguage = function(lang){
+    if(!KB[lang]) lang = "es";
+    currentAsstLang = lang;
+    var l = KB[lang];
+    var titleEl = document.getElementById("asst-title");
+    var statusEl = document.getElementById("asst-status");
+    if(titleEl) titleEl.textContent = l.title;
+    if(statusEl) statusEl.textContent = l.status;
+    if(inputEl) inputEl.placeholder = l.placeholder;
+    renderQuickReplies();
+    // Si ya se había saludado, actualiza el saludo al nuevo idioma
+    if(greeted && messagesEl){
+      messagesEl.innerHTML = "";
+      appendMessage(l.greeting, "bot");
+    }
   };
 
   document.addEventListener("DOMContentLoaded", function(){
@@ -1134,6 +1583,7 @@ body { padding-bottom: 55px; }
     inputEl = document.getElementById("asst-input");
     panelEl = document.getElementById("asst-panel");
     bubbleEl = document.getElementById("asst-bubble");
+    inputEl.placeholder = KB.es.placeholder;
     renderQuickReplies();
     inputEl.addEventListener("keypress", function(e){
       if(e.key === "Enter") window.asstSend();
